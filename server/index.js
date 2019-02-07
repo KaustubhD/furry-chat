@@ -28,8 +28,10 @@ wsServer.on('request', req => {
   let userName = ''
   let userColor = ''
   console.log('Connection accepted')
+  let ind = clients.push(conn) - 1
+  
 
-  clients.push(conn)
+  // console.log(clients)
 
   // History part here
 
@@ -40,7 +42,7 @@ wsServer.on('request', req => {
       if(!userName){
         userName = parseIt(message.utf8Data)
         userColor = randomMC.getColor()
-        clients.push({userName, userColor})
+        // clients.push({userName, userColor})
         conn.sendUTF(JSON.stringify({
           type: 'color',
           data: {
@@ -56,15 +58,18 @@ wsServer.on('request', req => {
           data: {
             time: new Date().toLocaleTimeString(),
             data: parseIt(message.utf8Data),
-            author: userName,
-            color: userColor
+            userName,
+            userColor
           }
         }
         let jsonString = JSON.stringify(obj)
 
-        for(let i of clients){
-          i.sendUTF(jsonString)
+        // console.log(clients[0])
+        console.log(clients.length)
+        for(let i = 0; i < clients.length; i++){
+          clients[i].sendUTF(jsonString)
         }
+
       }
     }
   }) // on 'message'
@@ -72,6 +77,7 @@ wsServer.on('request', req => {
   conn.on('close', connection => {
     if(userName && userColor){
       console.log(`${userName} has left the conversation`)
+      clients.splice(ind, 1)
     }
   })
 

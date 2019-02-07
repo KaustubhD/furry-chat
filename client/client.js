@@ -1,6 +1,7 @@
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
 let conn = new WebSocket('ws://127.0.0.1:6900')
+let contentDiv = document.getElementById('content')
 let statusSpan = document.getElementById('status')
 let inputField = document.getElementById('input')
 let nameH1 = document.getElementById('Username')
@@ -14,13 +15,18 @@ conn.onopen = () => {
   inputField.removeAttribute('disabled')
   window.setTimeout(() => {
     statusSpan.parentElement.removeChild(statusSpan)
-  }, 2500)
+  }, 5500)
 }
 
 conn.onerror = err => {
   console.log('Connection failed')
   console.error(err)
   statusSpan.textContent = 'Connection failed! Try reloading the page'
+}
+
+conn.onclose = ev => {
+  console.log('Connection aborted')
+  console.log(ev)
 }
 
 conn.onmessage = res => {
@@ -38,7 +44,10 @@ conn.onmessage = res => {
     nameH1.style.display = 'block'
     nameH1.style.color = userColor
     nameH1.textContent = userName
-  } 
+  }
+  else if(msg.type === 'message'){
+    addMessage(msg.data)
+  }
 }
 
 inputField.addEventListener('keydown', ev => {
@@ -56,3 +65,18 @@ inputField.addEventListener('keydown', ev => {
     }
   }
 })
+
+let addMessage = (msg) => {
+  console.log(msg)
+  let outerDiv = document.createElement('div')
+  if(msg.userName === userName){
+    outerDiv.setAttribute('class', 'mess mine')
+  }
+  else{
+    outerDiv.setAttribute('class', 'mess notmine')
+  }
+  outerDiv.innerHTML = `<p style="color: ${msg.userColor};">${msg.userName}</p>
+    <p>${msg.data}</p>
+  `
+  contentDiv.appendChild(outerDiv)
+}
