@@ -43,7 +43,9 @@ wsServer.on('request', req => {
         clients.push({userName, userColor})
         conn.sendUTF(JSON.stringify({
           type: 'color',
-          data: userColor
+          data: {
+            userColor
+          }
         }))
         console.log(`New user named \"${userName}\" just joined.`)
       }
