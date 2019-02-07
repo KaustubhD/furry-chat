@@ -1,6 +1,8 @@
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
-let conn = new WebSocket('ws://127.0.0.1:6900')
+// let conn = new WebSocket('ws://127.0.0.1:6900')
+let conn = new WebSocket('ws://fierce-caverns-26740.herokuapp.com:6900')
+
 let contentDiv = document.getElementById('content')
 let statusSpan = document.getElementById('status')
 let inputField = document.getElementById('input')
