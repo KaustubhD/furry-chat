@@ -18,7 +18,7 @@ let wsServer = new webSocketServer({
   httpServer: server
 })
 
-let client = []
+let clients = []
 
 
 wsServer.on('request', req => {
@@ -28,6 +28,8 @@ wsServer.on('request', req => {
   let userName = ''
   let userColor = ''
   console.log('Connection accepted')
+
+  clients.push(conn)
 
   // History part here
 
@@ -48,9 +50,26 @@ wsServer.on('request', req => {
       else{
         console.log(`New message from ${userName}: \"${message.utf8Data}\"`)
         let obj = {
-          time: new Date().toLocaleTimeString()
+          type: 'message',
+          data: {
+            time: new Date().toLocaleTimeString(),
+            data: parseIt(message.utf8Data),
+            author: userName,
+            color: userColor
+          }
+        }
+        let jsonString = JSON.stringify(obj)
+
+        for(let i of clients){
+          i.sendUTF(jsonString)
         }
       }
+    }
+  }) // on 'message'
+
+  conn.on('close', connection => {
+    if(userName && userColor){
+      console.log(`${userName} has left the conversation`)
     }
   })
 
