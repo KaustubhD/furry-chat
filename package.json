@@ -1,0 +1,19 @@
+{
+  "name": "wstry",
+  "version": "1.0.0",
+  "description": "A simple app to chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/KayDee/WStry.git"
+  },
+  "author": "Kaydee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KayDee/WStry/issues"
+  },
+  "homepage": "https://github.com/KayDee/WStry#readme"
+}
