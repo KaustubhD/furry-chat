@@ -1,5 +1,4 @@
-// "use strict"
-function wstry(){
+"use strict"
   const PORT = 6900
   let webSocketServer = require('websocket').server
   let http = require('http')
@@ -87,9 +86,3 @@ function wstry(){
   let parseIt = strin => {
     return strin.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
   }
-}
-wstry()
-
-module.exports = {
-  wstry
-}
