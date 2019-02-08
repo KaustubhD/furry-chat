@@ -1,12 +1,8 @@
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
-<<<<<<< HEAD
-let conn = new WebSocket('http://young-lowlands-88811.herokuapp.com:6900'.replace(/^http/, 'ws'))
-=======
 // let conn = new WebSocket('ws://127.0.0.1:6900')
-let conn = new WebSocket('ws://fierce-caverns-26740.herokuapp.com:6900')
+let conn = new WebSocket('ws://young-lowlands-88811.herokuapp.com/')
 
->>>>>>> 9dc1516f188d46ae756e02ccfe774442763be4aa
 let contentDiv = document.getElementById('content')
 let statusSpan = document.getElementById('status')
 let inputField = document.getElementById('input')
