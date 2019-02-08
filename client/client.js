@@ -2,6 +2,7 @@ window.WebSocket = window.WebSocket || window.MozWebSocket
 
 // let conn = new WebSocket('ws://127.0.0.1:6900')
 let conn = new WebSocket('ws://young-lowlands-88811.herokuapp.com/')
+// lett conn = new WebSocket('')
 
 let contentDiv = document.getElementById('content')
 let statusSpan = document.getElementById('status')

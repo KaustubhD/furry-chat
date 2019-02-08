@@ -2,17 +2,28 @@
 const PORT = process.env.PORT || 6900
 let webSocketServer = require('websocket').server
 let http = require('http')
+let fs = require('fs')
 let randomMC = require('random-material-color')
 
 
 let server = http.createServer((req, res) => {
   console.log("HTTP server : " + new Date() + ' Requested : ' + req.url)
-  res.write('Hey from server')
+  fs.readFile(__dirname + req.url, (err, data) => {
+    if(err){
+      res.writeHead(404, "Maybe file wasn\'t found")
+      res.end(JSON.stringify(err))
+      return
+    }
+    else{
+      res.writeHead(200)
+      res.end(data)
+    }
+  })
+  // res.write('Hey from server')
 })
 
 server.listen(PORT, () => {
   console.log("Server listening on port " + PORT)
-  res.write('Hey from port 6900')
 })
 
 let wsServer = new webSocketServer({
