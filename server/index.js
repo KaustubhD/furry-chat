@@ -8,10 +8,12 @@ let randomMC = require('random-material-color')
 
 let server = http.createServer((req, res) => {
   console.log("HTTP server : " + new Date() + ' Requested : ' + req.url)
+  res.write('Hey from server')
 })
 
 server.listen(PORT, () => {
   console.log("Server listening on port " + PORT)
+  res.write('Hey from server:6900')
 })
 
 let wsServer = new webSocketServer({
