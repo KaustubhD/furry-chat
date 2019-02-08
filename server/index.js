@@ -8,7 +8,7 @@ let randomMC = require('random-material-color')
 
 let server = http.createServer((req, res) => {
   console.log("HTTP server : " + new Date() + ' Requested : ' + req.url)
-  fs.readFile(__dirname + '../' + req.url, (err, data) => {
+  fs.readFile(__dirname + '/..' + req.url, (err, data) => {
     if(err){
       res.writeHead(404, "Maybe file wasn\'t found")
       res.end(JSON.stringify(err))
