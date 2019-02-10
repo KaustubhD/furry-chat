@@ -1,0 +1,13 @@
+* { font-family:tahoma; font-size:12px; padding:0px;margin:0px; box-sizing: border-box; }
+    html, body { height: 100%; }
+    p { line-height:18px; }
+    div { width:500px; margin-left:auto; margin-right:auto; }
+    #content { display: flex; flex-direction: column; padding:5px; background: #222; border-radius:5px; overflow-y: scroll; border:1px solid #CCC; margin-top:10px; height: 70%; }
+    #input { border-radius:2px; border:1px solid #ccc; margin-top:10px; padding:5px; width:400px; }
+    #status { width:88px; display:block; float:left; margin-top:15px; }
+    #instructions{ margin-top: 30px; }
+    .mess { width: fit-content; height: fit-content; max-width: 45%; border-radius: 5px; padding: 5px 15px; border: 2px solid #ccc; margin: 0 5px 5px 0; }
+    .mess p:first-child { width: fit-content; margin-block-start: 0; color: #ddd; }
+    .mess p:last-child { width: fit-content; margin-block-end: 0; color: #ddd; }
+    .mine { align-self: flex-end; text-align: right; }
+    .left { align-self: flex-start; text-align: left; }
