@@ -78,9 +78,7 @@ wsServer.on('request', req => {
 
         // console.log(clients[0])
         console.log(clients.length)
-        for(let i = 0; i < clients.length; i++){
-          clients[i].sendUTF(jsonString)
-        }
+        wsServer.broadcast(clients, jsonString)
 
       }
     }
@@ -95,6 +93,11 @@ wsServer.on('request', req => {
 
 }) // on 'request'
 
+wsServer.__proto__.broadcast = (peersList, jsonMsg) => {
+  for(let i of peersList){
+    i.sendUTF(jsonMsg)
+  }
+}
 
 let parseIt = strin => {
   return strin.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')

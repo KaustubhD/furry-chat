@@ -12,6 +12,8 @@ let nameH1 = document.getElementById('Username')
 let userName = false
 let userColor = false
 
+let allPeers = []
+
 conn.onopen = () => {
   console.log('Connection accepted')
   statusSpan.textContent = 'Connected'
@@ -19,6 +21,11 @@ conn.onopen = () => {
   window.setTimeout(() => {
     statusSpan.parentElement.removeChild(statusSpan)
   }, 5500)
+
+  // Notify the user that he/she is alone
+  // if(allPeers.length){
+
+  // }
 }
 
 conn.onerror = err => {
@@ -47,6 +54,9 @@ conn.onmessage = res => {
     nameH1.style.display = 'block'
     nameH1.style.color = userColor
     nameH1.textContent = userName
+  }
+  else if(msg.type === 'notif'){
+    // if(msg.data.)
   }
   else if(msg.type === 'message'){
     addMessage(msg.data)

@@ -22,5 +22,8 @@
   "dependencies": {
     "random-material-color": "^1.0.3",
     "websocket": "^1.0.28"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
