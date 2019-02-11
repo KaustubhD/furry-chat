@@ -40,7 +40,7 @@ wsServer.on('request', req => {
   let userName = ''
   let userColor = ''
   console.log('Connection accepted')
-  let ind = clients.push(conn) - 1
+  let ind = -1
   
 
   // console.log(clients)
@@ -55,6 +55,9 @@ wsServer.on('request', req => {
         userName = parseIt(message.utf8Data)
         userColor = randomMC.getColor()
         // clients.push({userName, userColor})
+        // wsServer.broadcast(clients, JSON.stringify({type: 'notif', data: {notif: `${userName} has joined the conversation`, type: "+", color: userColor}}))
+        wsServer.broadcast(clients, JSON.stringify({type: 'notif', data: {notif: `${userName} has joined the conversation`, type: "+"}}))
+        ind = clients.push(conn) - 1
         conn.sendUTF(JSON.stringify({
           type: 'color',
           data: {

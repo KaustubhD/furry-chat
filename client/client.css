@@ -72,3 +72,10 @@ div{
   align-self: flex-start;
   text-align: left;
 }
+.userMan{
+  width: 100%;
+  text-align: center;
+  width: 5px 0;
+  margin: 5px 0;
+  background: #555;
+}

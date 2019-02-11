@@ -57,6 +57,7 @@ conn.onmessage = res => {
   }
   else if(msg.type === 'notif'){
     // if(msg.data.)
+    addNotif(msg.data)
   }
   else if(msg.type === 'message'){
     addMessage(msg.data)
@@ -79,7 +80,19 @@ inputField.addEventListener('keydown', ev => {
   }
 })
 
-let addMessage = (msg) => {
+let addNotif = data => {
+  let outerDiv = document.createElement('div')
+  switch (data.type){
+    case '+':
+      outerDiv.setAttribute('class', 'userMan addUser')
+      // outerDiv.innerHTML = `<span style="color: ${data.color}">${data.user}</span><span>${data.notif}</span>`
+      outerDiv.innerHTML = `<span class="">${data.notif}</span>`
+      break
+  }
+  contentDiv.appendChild(outerDiv)
+}
+
+let addMessage = msg => {
   console.log(msg)
   let outerDiv = document.createElement('div')
   if(msg.userName === userName){
