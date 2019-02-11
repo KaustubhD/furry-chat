@@ -79,3 +79,9 @@ div{
   margin: 5px 0;
   background: #555;
 }
+.addUser{
+  color: #0BB3B7;
+}
+.removeUser{
+  color: #F43434;
+}
