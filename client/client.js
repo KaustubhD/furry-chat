@@ -88,6 +88,10 @@ let addNotif = data => {
       // outerDiv.innerHTML = `<span style="color: ${data.color}">${data.user}</span><span>${data.notif}</span>`
       outerDiv.innerHTML = `<span class="addUser">${data.notif}</span>`
       break
+    case '-':
+      outerDiv.setAttribute('class', 'userMan')
+      outerDiv.innerHTML = `<span class="removeUser">${data.notif}</span>`
+      break
   }
   contentDiv.appendChild(outerDiv)
 }

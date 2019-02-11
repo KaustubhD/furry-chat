@@ -91,6 +91,7 @@ wsServer.on('request', req => {
     if(userName && userColor){
       console.log(`${userName} has left the conversation`)
       clients.splice(ind, 1)
+      wsServer.broadcast(clients, JSON.stringify({type: 'notif', data: {notif: `${userName} has left the conversation`, type: "-"}}))
     }
   })
 
