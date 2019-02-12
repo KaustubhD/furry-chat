@@ -60,7 +60,8 @@ conn.onmessage = res => {
     addNotif(msg.data)
   }
   else if(msg.type === 'peer_list'){
-    allPeers = msg.data.peers
+    allPeers = JSON.parse(msg.data.peers)
+    console.log(allPeers)
   }
   else if(msg.type === 'message'){
     addMessage(msg.data)

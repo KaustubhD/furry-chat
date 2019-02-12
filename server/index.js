@@ -43,7 +43,7 @@ wsServer.on('request', req => {
   let ind = -1
   
   // send clients list
-  conn.sendUTF(JSON.stringify({type: 'peer_list', data: {peers: clients}}))
+  conn.sendUTF(JSON.stringify({type: 'peer_list', data: {peers: JSON.stringify(clients)}}))
   // console.log(clients)
 
   // History part here
