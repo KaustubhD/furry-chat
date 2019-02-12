@@ -59,6 +59,9 @@ conn.onmessage = res => {
     // if(msg.data.)
     addNotif(msg.data)
   }
+  else if(msg.type === 'peer_list'){
+    allPeers = msg.data.peers
+  }
   else if(msg.type === 'message'){
     addMessage(msg.data)
   }
