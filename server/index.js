@@ -19,7 +19,7 @@ let server = http.createServer((req, res) => {
       res.end(data)
     }
   })
-  // res.write('Hey from server')
+  // res.end('Hey from server')
 })
 
 server.listen(PORT, () => {
@@ -42,8 +42,7 @@ wsServer.on('request', req => {
   console.log('Connection accepted')
   let ind = -1
   
-  // send clients list
-  conn.sendUTF(JSON.stringify({type: 'peer_list', data: {peers: JSON.stringify(clients)}}))
+  
   // console.log(clients)
 
   // History part here
@@ -58,13 +57,17 @@ wsServer.on('request', req => {
         // clients.push({userName, userColor})
         // wsServer.broadcast(clients, JSON.stringify({type: 'notif', data: {notif: `${userName} has joined the conversation`, type: "+", color: userColor}}))
         wsServer.broadcast(clients, JSON.stringify({type: 'notif', data: {notif: `${userName} has joined the conversation`, type: "+"}}))
-        ind = clients.push(conn) - 1
+        ind = clients.push({userName, conn}) - 1
         conn.sendUTF(JSON.stringify({
           type: 'color',
           data: {
             userColor
           }
         }))
+        // send clients list
+        let peerList = clients.map(cl => cl.userName)
+        console.log(peerList)
+        wsServer.broadcast(clients, JSON.stringify({type: 'peer_list', data: {peers: JSON.stringify(peerList)}}))
         console.log(`New user named \"${userName}\" just joined.`)
       }
       else{
@@ -100,7 +103,7 @@ wsServer.on('request', req => {
 
 wsServer.__proto__.broadcast = (peersList, jsonMsg) => {
   for(let i of peersList){
-    i.sendUTF(jsonMsg)
+    i.conn.sendUTF(jsonMsg)
   }
 }
 

@@ -60,8 +60,11 @@ conn.onmessage = res => {
     addNotif(msg.data)
   }
   else if(msg.type === 'peer_list'){
+    //TODO: try making a listener
     allPeers = JSON.parse(msg.data.peers)
+    allPeers.splice(allPeers.indexOf(userName), 1) // No need for my own name
     console.log(allPeers)
+    displayPeers(allPeers)
   }
   else if(msg.type === 'message'){
     addMessage(msg.data)
@@ -113,4 +116,9 @@ let addMessage = msg => {
     <p>${msg.data}</p>
   `
   contentDiv.appendChild(outerDiv)
+}
+
+function displayPeers(list){
+  let peersDiv = document.getElementById('peers')
+  peersDiv.innerHTML = `<ul>` + list.reduce((acc, peer) => acc + `<li>${peer}</li>`, '') + "</ul>"
 }
