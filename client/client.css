@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Sigmar+One');
+
 *{
-  font-family: tahoma;
+  font-family: 'Sigmar One', tahoma;
   font-size: 12px;
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
 }
 html, body{
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 p{
   line-height: 18px;
@@ -15,6 +18,37 @@ div{
   width: 500px;
   margin-left: auto;
   margin-right: auto;
+}
+#overlay{
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(100deg, #303F9F, #0059D1, #303F9F);
+  /* font-family: 'Sigmar One' !important; */
+}
+#overlay h1{
+  display: inline-block;
+  font-size: 4rem;
+  color: #fff;
+  letter-spacing: 1px;
+}
+#overlay button{
+  background: #000;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 2rem;
+  padding: 10px;
+}
+.overlay-inp{
+  position: absolute;
+  
 }
 #content{
   display: flex;
