@@ -61,6 +61,21 @@ div{
 .overlay-inp:focus{
   outline: none;
 }
+
+@media screen and (max-width: 400px){
+  #overlay h1{
+    font-size: 2.3rem;
+  }
+  #overlay button{
+    font-size: 1.2rem;
+  }
+  .overlay-inp{
+    font-size: 1.2rem;
+  }
+}
+
+
+
 #content{
   position: relative;
   display: flex;
