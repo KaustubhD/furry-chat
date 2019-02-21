@@ -1,5 +1,5 @@
 {
-  "name": "wstry",
+  "name": "furrychat",
   "version": "1.0.0",
   "description": "A simple app to chat",
   "main": "server/index.js",
