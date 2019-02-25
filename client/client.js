@@ -71,8 +71,9 @@ conn.onmessage = res => {
   }
 }
 
-inputField.addEventListener('keydown', ev => {
-  // console.log(ev)
+document.getElementById('userName_input').addEventListener('keydown', function(ev){
+  console.log('%cLog keydown event', 'background: #007277; color: #ddd;')
+  // console.log(this)
   if(ev.keyCode == 13){
     let val = ev.target.value
     if(val){
@@ -83,9 +84,25 @@ inputField.addEventListener('keydown', ev => {
       return
     if(!userName){
       userName = val
+      this.removeEventListener('keydown', () => console.log('Keydown removed'))
     }
   }
 })
+
+// inputField.addEventListener('keydown', ev => {
+//   if(ev.keyCode == 13){
+//     let val = ev.target.value
+//     if(val){
+//       conn.send(val)
+//       ev.target.value = ''
+//     }
+//     else
+//       return
+//     if(!userName){
+//       userName = val
+//     }
+//   }
+// })
 
 let addNotif = data => {
   let outerDiv = document.createElement('div')
