@@ -71,23 +71,9 @@ conn.onmessage = res => {
   }
 }
 
-document.getElementById('userName_input').addEventListener('keydown', function(ev){
-  console.log('%cLog keydown event', 'background: #007277; color: #ddd;')
-  // console.log(this)
-  if(ev.keyCode == 13){
-    let val = ev.target.value
-    if(val){
-      conn.send(val)
-      ev.target.value = ''
-    }
-    else
-      return
-    if(!userName){
-      userName = val
-      this.removeEventListener('keydown', () => console.log('Keydown removed'))
-    }
-  }
-})
+document.getElementById('userName-input').addEventListener('keydown', keydownFunc)
+document.getElementById('sub-name').addEventListener('click', keydownFunc)
+
 
 // inputField.addEventListener('keydown', ev => {
 //   if(ev.keyCode == 13){
@@ -138,4 +124,24 @@ let addMessage = msg => {
 function displayPeers(list){
   let peersDiv = document.getElementById('peers')
   peersDiv.innerHTML = `<ul>` + list.reduce((acc, peer) => acc + `<li>${peer}</li>`, '') + "</ul>"
+}
+
+function keydownFunc(ev){
+  console.log('%cLog keydown event', 'background: #007277; color: #ddd;')
+  console.log(this)
+  console.log(ev)
+  if((ev.type === "keydown" && ev.keyCode == 13) || ev.type==="click"){
+    let element = ev.type === "keydown" ? ev.target : ev.target.previousElementSibling
+    if(element.value){
+      conn.send(element.value)
+      element.value = ''
+    }
+    else
+      return
+    if(!userName){
+      userName = element.value
+      element.removeEventListener('keydown', keydownFunc)
+      this.removeEventListener('click', keydownFunc)
+    }
+  }
 }
