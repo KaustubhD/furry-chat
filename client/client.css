@@ -1,8 +1,27 @@
-@import url('https://fonts.googleapis.com/css?family=Sigmar+One');
+/* @import url('https://fonts.googleapis.com/css?family=Sigmar+One'); */
+
+@font-face {
+  font-family: 'Cereal';
+  src: url('assets/Cereal_black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Cereal';
+  src: url('assets/Cereal_bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Cereal';
+  src: url('assets/Cereal_regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
 
 *{
   box-sizing: border-box;
-  font-family: 'Sigmar One', tahoma;
+  font-family: 'Cereal';
   font-size: 12px;
   padding: 0px;
   margin: 0px;
@@ -38,16 +57,20 @@ div{
   display: inline-block;
   font-size: 4rem;
   color: #FFA000;
+  font-weight: 200;
+  letter-spacing: 3px;
+  margin-bottom: 0.1em;
 }
 #overlay button{
   margin-top: 1rem;
-  background: #000;
+  background: #111;
   border: 0;
   border-radius: 4px;
   color: #FFA000;
   font-size: 2rem;
   padding: 10px;
   cursor: pointer;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.3), 1px 2px 5px 0 rgba(0,0,0,0.5)
 }
 .overlay-inp{
   font-size: 2rem;
@@ -57,6 +80,7 @@ div{
   text-align: center;
   border: 0;
   border-radius: 4px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.3), 1px 2px 5px 0 rgba(0,0,0,0.5)
 }
 .overlay-inp:focus{
   outline: none;
