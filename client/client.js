@@ -142,6 +142,17 @@ function keydownFunc(ev){
       userName = element.value
       element.removeEventListener('keydown', keydownFunc)
       this.removeEventListener('click', keydownFunc)
+      closeOverlay()
     }
   }
+}
+
+function closeOverlay(){
+  let overlay = document.getElementById('overlay')
+  overlay.classList.add('close-over')
+  overlay.addEventListener('transitionend', ev => {
+    console.log('Transition end')
+    overlay.parentElement.removeChild(overlay)
+  })
+
 }

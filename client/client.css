@@ -30,14 +30,19 @@ html, body{
   height: 100vh;
   width: 100vw;
 }
+body{
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 100%;
+}
 p{
   line-height: 18px;
 }
-div{
+/* div{
   width: 500px;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 #overlay{
   position: absolute;
   display: flex;
@@ -51,7 +56,10 @@ div{
   background: linear-gradient(100deg, #303F9F, #0059D1, #303F9F);
   z-index: 5;
   letter-spacing: 1px;
-  /* font-family: 'Sigmar One' !important; */
+}
+#overlay.close-over{
+  transform: translate3d(0, -100%, 0);
+  transition: transform 300ms ease-out;
 }
 #overlay h1{
   display: inline-block;
@@ -99,7 +107,10 @@ div{
 }
 
 
-
+.left, .right{
+  width: 100%;
+  margin: 0;
+}
 #content{
   position: relative;
   display: flex;
@@ -109,8 +120,8 @@ div{
   border-radius: 5px;
   overflow-y: scroll;
   border: 1px solid #CCC;
-  margin-top: 10px;
-  height: 70%;
+  /* margin-top: 10px; */
+  height: 80%;
 }
 #input{
   border-radius: 2px;
