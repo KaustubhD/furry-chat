@@ -74,7 +74,7 @@ conn.onmessage = res => {
 document.getElementById('userName-input').addEventListener('keydown', keydownFunc)
 document.getElementById('sub-name').addEventListener('click', keydownFunc)
 
-
+inputField.addEventListener('keydown', keydownFunc)
 // inputField.addEventListener('keydown', ev => {
 //   if(ev.keyCode == 13){
 //     let val = ev.target.value
@@ -119,27 +119,30 @@ let addMessage = msg => {
     <p>${msg.data}</p>
   `
   contentDiv.appendChild(outerDiv)
+  contentDiv.scrollTop = contentDiv.scrollHeight
 }
 
 function displayPeers(list){
-  let peersDiv = document.getElementById('peers')
-  peersDiv.innerHTML = `<ul>` + list.reduce((acc, peer) => acc + `<li>${peer}</li>`, '') + "</ul>"
+  let peersDiv = document.querySelector('#peers>ul')
+  peersDiv.innerHTML = list.reduce((acc, peer) => acc + `<li>${peer}</li>`, '')
 }
 
 function keydownFunc(ev){
   console.log('%cLog keydown event', 'background: #007277; color: #ddd;')
-  console.log(this)
+  console.log(`User name is ${userName}`)
   console.log(ev)
   if((ev.type === "keydown" && ev.keyCode == 13) || ev.type==="click"){
     let element = ev.type === "keydown" ? ev.target : ev.target.previousElementSibling
-    if(element.value){
-      conn.send(element.value)
+    let elementVal = element.value
+    if(elementVal){
+      conn.send(elementVal)
       element.value = ''
     }
     else
       return
     if(!userName){
-      userName = element.value
+      console.log(`%cIn not username --- ${elementVal}`, 'color: #0ff')
+      userName = elementVal
       element.removeEventListener('keydown', keydownFunc)
       this.removeEventListener('click', keydownFunc)
       closeOverlay()

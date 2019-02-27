@@ -18,7 +18,13 @@
   font-weight: 400;
   font-style: normal;
 }
+:root{
+  --base-blue: #0059D1;
+  --base-light: #4888DE;
+  --base-dark: #303F9F;
+}
 
+/*** Universals **/
 *{
   box-sizing: border-box;
   font-family: 'Cereal';
@@ -26,18 +32,26 @@
   padding: 0px;
   margin: 0px;
 }
+h1{
+  text-align: center;
+  font-size: 2em;
+}
 html, body{
   height: 100vh;
   width: 100vw;
 }
 body{
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 30% 70%;
   grid-template-rows: 100%;
 }
 p{
   line-height: 18px;
 }
+input:focus{
+  outline: none;
+}
+/*** End Universals **/
 /* div{
   width: 500px;
   margin-left: auto;
@@ -90,9 +104,6 @@ p{
   border-radius: 4px;
   box-shadow: 0 0 5px 0 rgba(0,0,0,0.3), 1px 2px 5px 0 rgba(0,0,0,0.5)
 }
-.overlay-inp:focus{
-  outline: none;
-}
 
 @media screen and (max-width: 400px){
   #overlay h1{
@@ -107,28 +118,73 @@ p{
 }
 
 
-.left, .right{
+.left-div, .right-div{
   width: 100%;
   margin: 0;
+  overflow: hidden;
+}
+.left-div{
+  box-shadow: 1px 0 10px 3px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+.left-div h1{
+  position: relative;
+  font-size: 2em;
+}
+.left-div > ul{
+  height: 100%;
+  width: 100%;
+}
+.left-div ul li{
+  margin: 5px;
+  border-radius: 4px;
+  background: #D4D1C8;
+  font-size: 1.3em;
+  line-height: 1;
+  text-align: center;
+  padding: 20px 0;
+}
+.right-div{
+  background: linear-gradient(var(--base-light), var(--base-dark));
+  padding: 15px;
 }
 #content{
   position: relative;
   display: flex;
   flex-direction: column;
   padding: 5px;
-  background: #222;
   border-radius: 5px;
   overflow-y: scroll;
-  border: 1px solid #CCC;
+  /* border: 1px solid #CCC; */
   /* margin-top: 10px; */
-  height: 80%;
+  height: 85%;
 }
 #input{
   border-radius: 2px;
   border: 1px solid #ccc;
   margin-top: 10px;
-  padding: 5px;
-  width: 400px;
+  padding: 3px 3px 3px 25px;
+  width: 100%;
+  height: 50px;
+  font-size: 1.2em;
+  border: 0;
+  border-radius: 25px;
+  background: #fff;
+  box-shadow: 0 2px 5px 0px rgba(0,0,0,0.5);
+}
+#input>input{
+  height: 100%;
+  width: calc(100% - 48px);
+  border: 0;
+}
+#input>button{
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--base-blue);
+  box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.5);
+  color: #fff;
+  border: 0;
 }
 #status{
   width: 88px;
@@ -136,17 +192,15 @@ p{
   float: left;
   margin-top: 15px;
 }
-#instructions{
-  margin-top: 30px;
-}
 .mess{
   width: fit-content;
   height: fit-content;
   min-width: 20%;
   max-width: 45%;
   border-radius: 5px;
-  padding: 0px 15px 0px 5px;
-  border: 2px solid #ccc;
+  padding: 10px 10px;
+  font-size: 1em;
+  /* border: 2px solid #ccc; */
   margin: 0 5px 5px 0;
 }
 .mess p:first-child{
@@ -158,15 +212,18 @@ p{
   width: fit-content;
   margin-block-end: 0;
   color: #ddd;
-  font-size: 0.8em;
 }
 .mine{
   align-self: flex-end;
   text-align: right;
+  padding: 10px;
+  background-color: rgba(22, 65, 112, 0.5)
 }
 .left{
   align-self: flex-start;
   text-align: left;
+  background-color: rgba(166, 209, 255, 0.5)
+  /* 166,209,255 */
 }
 .userMan{
   width: 100%;
