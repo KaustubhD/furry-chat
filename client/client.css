@@ -52,11 +52,8 @@ input:focus{
   outline: none;
 }
 /*** End Universals **/
-/* div{
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-} */
+
+
 #overlay{
   position: absolute;
   display: flex;
