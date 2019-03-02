@@ -51,6 +51,9 @@ p{
 input:focus{
   outline: none;
 }
+button:hover{
+  cursor: pointer;
+}
 /*** End Universals **/
 
 
@@ -123,6 +126,7 @@ input:focus{
 .left-div{
   box-shadow: 1px 0 10px 3px rgba(0,0,0,0.2);
   z-index: 2;
+  padding: 0px 15px;
 }
 .left-div h1{
   position: relative;
@@ -131,15 +135,17 @@ input:focus{
 .left-div > ul{
   height: 100%;
   width: 100%;
+  margin-top: 1em;
 }
 .left-div ul li{
-  margin: 5px;
+  margin: 5px 0px;
   border-radius: 4px;
   background: #D4D1C8;
   font-size: 1.3em;
   line-height: 1;
   text-align: center;
   padding: 20px 0;
+  list-style: none;
 }
 .right-div{
   background: linear-gradient(var(--base-light), var(--base-dark));
@@ -183,6 +189,11 @@ input:focus{
   color: #fff;
   border: 0;
 }
+#input>button img{
+  height: 20px;
+  width: 20px;
+  vertical-align: bottom;
+}
 #status{
   width: 88px;
   display: block;
@@ -198,7 +209,8 @@ input:focus{
   padding: 10px 10px;
   font-size: 1em;
   /* border: 2px solid #ccc; */
-  margin: 0 5px 5px 0;
+  /* background-color: rgba(22, 65, 112, 0.5); */
+  margin: 0 5px 15px 0;
 }
 .mess p:first-child{
   width: fit-content;
@@ -209,29 +221,38 @@ input:focus{
   width: fit-content;
   margin-block-end: 0;
   color: #ddd;
+  word-break: break-all;
 }
 .mine{
   align-self: flex-end;
   text-align: right;
   padding: 10px;
-  background-color: rgba(22, 65, 112, 0.5)
+  background-color: rgba(22, 65, 112, 0.5);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.notmine{
+  background-color: rgba(148,194,218, 0.1);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 .left{
   align-self: flex-start;
   text-align: left;
-  background-color: rgba(166, 209, 255, 0.5)
-  /* 166,209,255 */
+  background-color: rgba(166, 209, 255, 0.5);
 }
 .userMan{
   width: 100%;
   text-align: center;
-  width: 5px 0;
-  margin: 5px 0;
-  background: #555;
+  padding: 5px 0;
+  margin: 10px 0;
+  color: #fff;
+  /* background:  */
+  /* background: #555; */
 }
 .addUser{
-  color: #0BB3B7;
+  background: linear-gradient(to right, transparent, rgba(57,165,167, 1) , transparent);
+  /* color: #8FBFB9; */
 }
 .removeUser{
-  color: #F43434;
+  background: linear-gradient(to right, transparent, rgba(204,64,90, 1) , transparent);
+  /* color: #E48787; */
 }

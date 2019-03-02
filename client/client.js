@@ -6,7 +6,7 @@ let conn = new WebSocket('ws://127.0.0.1:6900')
 
 let contentDiv = document.getElementById('content')
 let statusSpan = document.getElementById('status')
-let inputField = document.getElementById('input')
+let inputField = document.querySelector('#input>input')
 let nameH1 = document.getElementById('Username')
 
 let userName = false
@@ -94,13 +94,13 @@ let addNotif = data => {
   let outerDiv = document.createElement('div')
   switch (data.type){
     case '+':
-      outerDiv.setAttribute('class', 'userMan')
+      outerDiv.setAttribute('class', 'userMan addUser')
       // outerDiv.innerHTML = `<span style="color: ${data.color}">${data.user}</span><span>${data.notif}</span>`
-      outerDiv.innerHTML = `<span class="addUser">${data.notif}</span>`
+      outerDiv.innerHTML = `<span>${data.notif}</span>`
       break
     case '-':
-      outerDiv.setAttribute('class', 'userMan')
-      outerDiv.innerHTML = `<span class="removeUser">${data.notif}</span>`
+      outerDiv.setAttribute('class', 'userMan removeUser')
+      outerDiv.innerHTML = `<span>${data.notif}</span>`
       break
   }
   contentDiv.appendChild(outerDiv)
