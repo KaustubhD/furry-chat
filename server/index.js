@@ -15,8 +15,26 @@ let server = http.createServer((req, res) => {
       return
     }
     else{
+      let contentType = "text/html"
+      switch(path.extName(req.url)){
+        case '.js':
+          contentType = 'text/javascript'
+          break
+        case '.css':
+          contentType = 'text/css'
+          break
+        case '.json':
+          contentType = 'application/json'
+          break
+        case '.png':
+          contentType = 'image/png'
+          break
+        case '.svg':
+          contentType = 'image/svg+xml'
+          break
+      }
       console.log(`Req url => ${__dirname + '/..' + req.url}`)
-      res.writeHead(200)
+      res.writeHead(200, {'Content-Type': contentType})
       res.end(data)
     }
   })
