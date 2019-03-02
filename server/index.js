@@ -15,6 +15,7 @@ let server = http.createServer((req, res) => {
       return
     }
     else{
+      console.log(`Req url => ${__dirname + '/..' + req.url}`)
       res.writeHead(200)
       res.end(data)
     }
