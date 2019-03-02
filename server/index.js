@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 6900
 let webSocketServer = require('websocket').server
 let http = require('http')
 let fs = require('fs')
+let path = require('path')
 let randomMC = require('random-material-color')
 
 
@@ -15,8 +16,10 @@ let server = http.createServer((req, res) => {
       return
     }
     else{
+      // TODO 
+      // Refactor this switch cases with and object listing extensions and their mime types
       let contentType = "text/html"
-      switch(path.extName(req.url)){
+      switch(path.extname(req.url)){
         case '.js':
           contentType = 'text/javascript'
           break
