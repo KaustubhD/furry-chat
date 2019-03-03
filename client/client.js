@@ -1,3 +1,5 @@
+import "./client.css"
+
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
 // let conn = new WebSocket('ws://127.0.0.1:6900')
