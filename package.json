@@ -24,6 +24,8 @@
     "websocket": "^1.0.28"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
   }
 }
