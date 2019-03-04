@@ -1,13 +1,13 @@
 import "./client.css"
-
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
-// let conn = new WebSocket('ws://127.0.0.1:6900')
-let conn = new WebSocket('wss://young-lowlands-88811.herokuapp.com/')
+let conn = new WebSocket('ws://127.0.0.1:6900')
+// let conn = new WebSocket('wss://young-lowlands-88811.herokuapp.com/')
 // lett conn = new WebSocket('')
 
 let contentDiv = document.getElementById('content')
-let statusSpan = document.getElementById('status')
+let statusButton = document.getElementById('sub-name')
+// let statusSpan = document.getElementById('status')
 let inputField = document.querySelector('#input>input')
 let nameH1 = document.getElementById('Username')
 
@@ -16,13 +16,19 @@ let userColor = false
 
 let allPeers = []
 
+setup()
+
 conn.onopen = () => {
   console.log('Connection accepted')
-  statusSpan.textContent = 'Connected'
+  // statusSpan.textContent = 'Connected'
+
+  setStatus(true)
+
   inputField.removeAttribute('disabled')
-  window.setTimeout(() => {
-    statusSpan.parentElement.removeChild(statusSpan)
-  }, 5500)
+  // window.setTimeout(() => {
+  //   statusSpan.parentElement.removeChild(statusSpan)
+
+  // }, 5500)
 
   // Notify the user that he/she is alone
   // if(allPeers.length){
@@ -33,12 +39,15 @@ conn.onopen = () => {
 conn.onerror = err => {
   console.log('Connection failed')
   console.error(err)
-  statusSpan.textContent = 'Connection failed! Try reloading the page'
+
+  setStatus(false)
+  // statusSpan.textContent = 'Connection failed! Try reloading the page'
 }
 
 conn.onclose = ev => {
   console.log('Connection aborted')
   console.log(ev)
+  setStatus(false)
 }
 
 conn.onmessage = res => {
@@ -160,4 +169,31 @@ function closeOverlay(){
     overlay.parentElement.removeChild(overlay)
   })
 
+}
+
+function setup(){
+  setStatus(false)
+}
+
+
+function setStatus(isActive){
+  console.log(`%ccalled status with ${isActive}`, 'background-color: #05e')
+  let statusButton = document.getElementById('sub-name')
+  if(statusButton){
+    if(!isActive){
+      statusButton.innerText = "Connection Failed"
+      statusButton.parentElement.querySelectorAll('input, button').forEach(el => {
+        el.setAttribute('disabled', true)
+        el.classList.add('disabled')
+      })
+    }
+    else{
+      console.log('In here')
+      statusButton.innerText = "Enter chat"
+      statusButton.parentElement.querySelectorAll('input, button').forEach(el => {
+        el.removeAttribute('disabled')
+        el.classList.remove('disabled')
+      })
+    }
+  }
 }

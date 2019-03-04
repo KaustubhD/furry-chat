@@ -123,9 +123,11 @@ button:hover{
   overflow: hidden;
 }
 .left-div{
+  background: #fff;
   box-shadow: 1px 0 10px 3px rgba(0,0,0,0.2);
   z-index: 2;
   padding: 0px 15px;
+  height: 100%;
 }
 .left-div h1{
   position: relative;
@@ -150,6 +152,18 @@ button:hover{
   background: linear-gradient(var(--base-light), var(--base-dark));
   padding: 15px;
 }
+
+@media screen and (max-width: 400px){
+  body{
+    grid-template-columns: 100%;
+  }
+  .left-div{
+    position: absolute;
+    left: -100%;
+    z-index: 2;
+  }
+}
+
 #content{
   position: relative;
   display: flex;
@@ -254,4 +268,9 @@ button:hover{
 .removeUser{
   background: linear-gradient(to right, transparent, rgba(204,64,90, 1) , transparent);
   /* color: #E48787; */
+}
+.disabled{
+  opacity: 0.56;
+  box-shadow: none !important;
+  transition: opacity 300ms ease-in-out;
 }
