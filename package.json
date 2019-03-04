@@ -16,7 +16,7 @@
     "url": "git+ssh://git@github.com/KayDee/WStry.git"
   },
   "author": "Kaydee",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/KayDee/WStry/issues"
   },
