@@ -42,7 +42,7 @@ conn.onclose = ev => {
 }
 
 conn.onmessage = res => {
-  // console.log(res) // Might be important
+  console.log(res) // Might be important
   let msg
   try{
     msg = JSON.parse(res.data)

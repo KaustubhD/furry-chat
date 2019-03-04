@@ -3,6 +3,7 @@ const nodeExternals = require('webpack-node-externals')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   entry: { main: './client/client.js' },
@@ -34,6 +35,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin('dist', {}),
     new MiniCssExtractPlugin({
       filename: 'client.[chunkhash].css',
     }),
