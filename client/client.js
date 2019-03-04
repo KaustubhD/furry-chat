@@ -40,14 +40,14 @@ conn.onerror = err => {
   console.log('Connection failed')
   console.error(err)
 
-  setStatus(false)
+  setStatus(false, 'Connection failed')
   // statusSpan.textContent = 'Connection failed! Try reloading the page'
 }
 
 conn.onclose = ev => {
   console.log('Connection aborted')
   console.log(ev)
-  setStatus(false)
+  setStatus(false, 'Connection aborted')
 }
 
 conn.onmessage = res => {
@@ -176,12 +176,15 @@ function setup(){
 }
 
 
-function setStatus(isActive){
+function setStatus(isActive, msg){
   console.log(`%ccalled status with ${isActive}`, 'background-color: #05e')
   let statusButton = document.getElementById('sub-name')
   if(statusButton){
     if(!isActive){
-      statusButton.innerText = "Connection Failed"
+      if(msg)
+        statusButton.innerText = msg
+      else
+        statusButton.innerText = "Connecting..."
       statusButton.parentElement.querySelectorAll('input, button').forEach(el => {
         el.setAttribute('disabled', true)
         el.classList.add('disabled')
