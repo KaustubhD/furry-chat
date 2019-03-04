@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
+    "dep": "git push origin `git subtree split --prefix dist master`:gh-pages --force",
     "dev": "webpack --mode development --watch",
     "prod": "webpack --mode production",
     "deploy": "./deploy.sh"
