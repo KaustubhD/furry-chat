@@ -1,8 +1,8 @@
 import "./client.css"
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
-// let conn = new WebSocket('ws://127.0.0.1:6900')
-let conn = new WebSocket('wss://young-lowlands-88811.herokuapp.com/')
+let conn = new WebSocket('ws://127.0.0.1:6900')
+// let conn = new WebSocket('wss://young-lowlands-88811.herokuapp.com/')
 // lett conn = new WebSocket('')
 
 let contentDiv = document.getElementById('content')
@@ -173,7 +173,8 @@ function closeOverlay(){
 
 function setup(){
   setStatus(false)
-  window.addEventListener('orientationchange resize', calcVh)
+  window.addEventListener('orientationchange', calcVh)
+  window.addEventListener('resize', calcVh)
   calcVh()
 }
 

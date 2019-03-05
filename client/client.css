@@ -2,9 +2,9 @@
 
 @font-face {
   font-family: 'Cereal';
-  src: url('assets/Cereal_black.woff2') format('woff2');
   font-weight: 900;
   font-style: normal;
+  src: url('assets/Cereal_black.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Cereal';
@@ -22,6 +22,14 @@
   --base-blue: #0059D1;
   --base-light: #4888DE;
   --base-dark: #303F9F;
+  
+  --font-big-h1: 4rem;
+  --font-mid-h1: 3em;
+  --font-small-h1: 2.3em;
+
+  --font-big-h2: 2em;
+  --font-mid-h2: 1.6em;
+  --font-small-h2: 1.1em;
 }
 
 /*** Universals **/
@@ -32,9 +40,12 @@
   padding: 0px;
   margin: 0px;
 }
-h1{
+h1, h2{
   text-align: center;
-  font-size: 2em;
+  font-size: var(--font-big-h2);
+}
+h1{
+  font-size: var(--font-big-h1);
 }
 html{
   height: 100vh;
@@ -52,8 +63,29 @@ p{
 input:focus{
   outline: none;
 }
-button:hover{
+button:hover:enabled{
   cursor: pointer;
+}
+@media screen and (max-width: 500px){
+  h2{
+    font-size: var(--font-mid-h2);
+  }
+  h1{
+    font-size: var(--font-mid-h1);
+  }
+}
+@media screen and (max-width: 400px){
+  h2{
+    font-size: var(--font-small-h2);
+  }
+  h1{
+    font-size: var(--font-small-h1);
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 400px){
+  /* h1{
+    font-size: 5em;
+  } */
 }
 /*** End Universals **/
 
@@ -106,10 +138,23 @@ button:hover{
   box-shadow: 0 0 5px 0 rgba(0,0,0,0.3), 1px 2px 5px 0 rgba(0,0,0,0.5)
 }
 
-@media screen and (max-width: 400px){
-  #overlay h1{
-    font-size: 2.3rem;
+@media screen and (max-width: 500px){
+  /* #overlay h1{
+    font-size: 3rem;
+  } */
+  #overlay button{
+    font-size: 1.7rem;
   }
+  .overlay-inp{
+    font-size: 1.5rem;
+  }
+}
+
+
+@media screen and (max-width: 400px){
+  /* #overlay h1{
+    font-size: 2.3rem;
+  } */
   #overlay button{
     font-size: 1.2rem;
   }
@@ -177,22 +222,28 @@ button:hover{
   height: 85%;
 }
 #input{
+  display: flex;
   border-radius: 2px;
   border: 1px solid #ccc;
   margin-top: 10px;
   padding: 3px 3px 3px 25px;
   width: 100%;
-  height: 50px;
-  font-size: 1.2em;
+  /* height: 50px; */
+  /* font-size: 1.2em; */
   border: 0;
   border-radius: 25px;
   background: #fff;
   box-shadow: 0 2px 5px 0px rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
 }
 #input>input{
-  height: 100%;
-  width: calc(100% - 48px);
+  /* height: 100%; */
+  /* background: /brown; */
+  /* width: calc(100% - 48px); */
   border: 0;
+  font-size: 2rem;
+  flex-grow: 1;
 }
 #input>button{
   width: 44px;
@@ -202,18 +253,30 @@ button:hover{
   box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.5);
   color: #fff;
   border: 0;
+  margin-left: 5px;
 }
 #input>button img{
-  height: 20px;
-  width: 20px;
+  height: 60%;
+  width: 60%;
   vertical-align: bottom;
 }
-#status{
+/* #status{
   width: 88px;
   display: block;
   float: left;
   margin-top: 15px;
+} */
+
+@media screen and (max-width: 400px), (max-height: 400px){
+  #input>input{
+    font-size: 1.3rem;
+  }
+  #input>button{
+    height: 30px;
+    width: 30px;
+  }
 }
+
 .mess{
   width: fit-content;
   height: fit-content;
