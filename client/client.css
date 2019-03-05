@@ -22,7 +22,7 @@
   --base-blue: #0059D1;
   --base-light: #4888DE;
   --base-dark: #303F9F;
-  
+
   --font-big-h1: 4rem;
   --font-mid-h1: 3em;
   --font-small-h1: 2.3em;
@@ -74,18 +74,15 @@ button:hover:enabled{
     font-size: var(--font-mid-h1);
   }
 }
-@media screen and (max-width: 400px){
+/* @media screen and (max-width: 400px){
   h2{
     font-size: var(--font-small-h2);
   }
-  h1{
-    font-size: var(--font-small-h1);
-  }
-}
+} */
 @media screen and (orientation: landscape) and (max-height: 400px){
-  /* h1{
-    font-size: 5em;
-  } */
+  h2{
+    font-size: var(--font-mid-h2);
+  }
 }
 /*** End Universals **/
 
@@ -110,7 +107,6 @@ button:hover:enabled{
 }
 #overlay h1{
   display: inline-block;
-  font-size: 4rem;
   color: #FFA000;
   font-weight: 200;
   letter-spacing: 3px;
@@ -195,6 +191,8 @@ button:hover:enabled{
   list-style: none;
 }
 .right-div{
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(var(--base-light), var(--base-dark));
   padding: 15px;
 }
@@ -220,6 +218,7 @@ button:hover:enabled{
   /* border: 1px solid #CCC; */
   /* margin-top: 10px; */
   height: 85%;
+  flex-grow: 1;
 }
 #input{
   display: flex;
@@ -337,4 +336,18 @@ button:hover:enabled{
   opacity: 0.56;
   box-shadow: none !important;
   transition: opacity 300ms ease-in-out;
+}
+
+@media screen and (max-width: 400px), (max-height: 400px){
+  .mess{
+    font-size: 0.7em;
+    padding: 5px;
+    margin: 0 5px 10px 0;
+  }
+  .mine{
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  }
+  .notmine{
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  }
 }
