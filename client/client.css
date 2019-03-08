@@ -17,6 +17,7 @@
   font-style: normal;
 }
 :root{
+  font-size: 10px;
   --base-blue: #0059D1;
   --base-light: #4888DE;
   --base-dark: #303F9F;
