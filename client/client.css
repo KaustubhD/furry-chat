@@ -72,11 +72,7 @@ button:hover:enabled{
     font-size: var(--font-mid-h1);
   }
 }
-/* @media screen and (max-width: 400px){
-  h2{
-    font-size: var(--font-small-h2);
-  }
-} */
+
 @media screen and (orientation: landscape) and (max-height: 400px){
   h2{
     font-size: var(--font-mid-h2);
@@ -133,9 +129,6 @@ button:hover:enabled{
 }
 
 @media screen and (max-width: 500px){
-  /* #overlay h1{
-    font-size: 3rem;
-  } */
   #overlay button{
     font-size: 1.7rem;
   }
@@ -146,9 +139,6 @@ button:hover:enabled{
 
 
 @media screen and (max-width: 400px){
-  /* #overlay h1{
-    font-size: 2.3rem;
-  } */
   #overlay button{
     font-size: 1.2rem;
   }
@@ -222,8 +212,6 @@ button:hover:enabled{
   padding: 5px;
   border-radius: 5px;
   overflow-y: scroll;
-  /* border: 1px solid #CCC; */
-  /* margin-top: 10px; */
   height: 85%;
   flex-grow: 1;
 }
@@ -234,8 +222,6 @@ button:hover:enabled{
   margin-top: 10px;
   padding: 3px 3px 3px 25px;
   width: 100%;
-  /* height: 50px; */
-  /* font-size: 1.2em; */
   border: 0;
   border-radius: 25px;
   background: #fff;
@@ -244,9 +230,6 @@ button:hover:enabled{
   align-items: center;
 }
 #input>input{
-  /* height: 100%; */
-  /* background: /brown; */
-  /* width: calc(100% - 48px); */
   border: 0;
   font-size: 2rem;
   flex-grow: 1;
@@ -291,8 +274,6 @@ button:hover:enabled{
   border-radius: 5px;
   padding: 10px 10px;
   font-size: 1em;
-  /* border: 2px solid #ccc; */
-  /* background-color: rgba(22, 65, 112, 0.5); */
   margin: 0 5px 15px 0;
 }
 .mess p:first-child{
@@ -328,16 +309,12 @@ button:hover:enabled{
   padding: 5px 0;
   margin: 10px 0;
   color: #fff;
-  /* background:  */
-  /* background: #555; */
 }
 .addUser{
   background: linear-gradient(to right, transparent, rgba(57,165,167, 1) , transparent);
-  /* color: #8FBFB9; */
 }
 .removeUser{
   background: linear-gradient(to right, transparent, rgba(204,64,90, 1) , transparent);
-  /* color: #E48787; */
 }
 .disabled{
   opacity: 0.56;
