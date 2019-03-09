@@ -19,7 +19,7 @@ let allPeers = []
 setup()
 
 conn.onopen = () => {
-  console.log('Connection accepted')
+  // console.log('Connection accepted')
   // statusSpan.textContent = 'Connected'
 
   setStatus(true)
@@ -37,21 +37,21 @@ conn.onopen = () => {
 }
 
 conn.onerror = err => {
-  console.log('Connection failed')
-  console.error(err)
+  // console.log('Connection failed')
+  // console.error(err)
 
   setStatus(false, 'Connection failed')
   // statusSpan.textContent = 'Connection failed! Try reloading the page'
 }
 
 conn.onclose = ev => {
-  console.log('Connection aborted')
-  console.log(ev)
+  // console.log('Connection aborted')
+  // console.log(ev)
   setStatus(false, 'Connection aborted')
 }
 
 conn.onmessage = res => {
-  console.log(res) // Might be important
+  // console.log(res) // Might be important
   let msg
   try{
     msg = JSON.parse(res.data)
@@ -74,7 +74,7 @@ conn.onmessage = res => {
     //TODO: try making a listener
     allPeers = JSON.parse(msg.data.peers)
     allPeers.splice(allPeers.indexOf(userName), 1) // No need for my own name
-    console.log(allPeers)
+    // console.log(allPeers)
     displayPeers(allPeers)
   }
   else if(msg.type === 'message'){
@@ -118,7 +118,7 @@ let addNotif = data => {
 }
 
 let addMessage = msg => {
-  console.log(msg)
+  // console.log(msg)
   let outerDiv = document.createElement('div')
   if(msg.userName === userName){
     outerDiv.setAttribute('class', 'mess mine')
@@ -139,9 +139,9 @@ function displayPeers(list){
 }
 
 function keydownFunc(ev){
-  console.log('%cLog keydown event', 'background: #007277; color: #ddd;')
-  console.log(`User name is ${userName}`)
-  console.log(ev)
+  // console.log('%cLog keydown event', 'background: #007277; color: #ddd;')
+  // console.log(`User name is ${userName}`)
+  // console.log(ev)
   if((ev.type === "keydown" && ev.keyCode == 13) || ev.type==="click"){
     let element = ev.type === "keydown" ? ev.target : ev.target.previousElementSibling
     let elementVal = element.value
@@ -152,7 +152,7 @@ function keydownFunc(ev){
     else
       return
     if(!userName){
-      console.log(`%cIn not username --- ${elementVal}`, 'color: #0ff')
+      // console.log(`%cIn not username --- ${elementVal}`, 'color: #0ff')
       userName = elementVal
       element.removeEventListener('keydown', keydownFunc)
       this.removeEventListener('click', keydownFunc)
@@ -165,7 +165,7 @@ function closeOverlay(){
   let overlay = document.getElementById('overlay')
   overlay.classList.add('close-over')
   overlay.addEventListener('transitionend', ev => {
-    console.log('Transition end')
+    // console.log('Transition end')
     overlay.parentElement.removeChild(overlay)
   })
 
@@ -180,7 +180,7 @@ function setup(){
 
 
 function setStatus(isActive, msg){
-  console.log(`%ccalled status with ${isActive}`, 'background-color: #05e')
+  // console.log(`%ccalled status with ${isActive}`, 'background-color: #05e')
   let statusButton = document.getElementById('sub-name')
   if(statusButton){
     if(!isActive){
@@ -194,7 +194,7 @@ function setStatus(isActive, msg){
       })
     }
     else{
-      console.log('In here')
+      // console.log('In here')
       statusButton.innerText = "Enter chat"
       statusButton.parentElement.querySelectorAll('input, button').forEach(el => {
         el.removeAttribute('disabled')
