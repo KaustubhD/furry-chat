@@ -1,8 +1,8 @@
 import "./client.css"
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
-// let conn = new WebSocket('ws://127.0.0.1:6900')
-let conn = new WebSocket('wss://young-lowlands-88811.herokuapp.com/')
+let conn = new WebSocket('ws://127.0.0.1:6900')
+// let conn = new WebSocket('wss://young-lowlands-88811.herokuapp.com/')
 // lett conn = new WebSocket('')
 let leftDiv = document.querySelector('.left-div')
 let rightDiv = document.querySelector('.right-div')
@@ -209,7 +209,7 @@ function setStatus(isActive, msg){
 
 function calcVh(){
   let maxHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-  DEVICE_WIDTH = document.documentElement.clientWidth
+  // DEVICE_WIDTH = document.documentElement.clientWidth
   document.documentElement.style.height = `${maxHeight}px`
 }
 
@@ -221,7 +221,7 @@ let T_start = 0
 let T_end = 0
 let isValidSwipe = false
 let swipeDir = 0
-let acceptablePercent = 75
+let acceptablePercent = 45
 let draggableDiv = leftDiv
 let animationFrame
 
@@ -240,7 +240,7 @@ function moveTouch(ev){
   // console.log(`%cMoving touch`, 'background-color: #A73838; color: #fff;')
   // console.log(ev)
   console.log('SwipeDir --- ' + swipeDir)
-  if(isValidSwipe || draggableDiv.className.split(' ').indexOf('visible') >= 0){
+  if((isValidSwipe || draggableDiv.className.split(' ').indexOf('visible') >= 0)){
     swipeDir = ev.changedTouches[0].clientX - T_start
     T_end = (swipeDir * 100 / draggableDiv.clientWidth)
     if(swipeDir > 0)
@@ -255,6 +255,8 @@ function endTouch(ev){
   console.log(`%cEnding touch`, 'background-color: #0E2F44; color: #fff;')
   console.log(ev)
   console.log(100 + T_end)
+  if(T_end == 0)
+    return
   if(100 + T_end >= acceptablePercent){
     console.log(swipeDir)
     // debugger
@@ -269,10 +271,10 @@ function endTouch(ev){
 
 let diff
 function animTill(current, limit){
-  console.log(current + " ---- " + limit)
+  // console.log(current + " ---- " + limit)
   // debugger
   diff = limit - current
-  if(Math.abs(diff) <= 1 || Math.abs(diff) >= 99){
+  if(Math.abs(diff) <= 4 || Math.abs(diff) >= 96){
     cancelAnimationFrame(animationFrame)
     diff = 0
     T_start = 0
@@ -282,7 +284,7 @@ function animTill(current, limit){
     draggableDiv.style.transform = `translate3d(${limit}%,0,0)`
     return
   }
-  current += Math.sign(diff) * 2
+  current += Math.sign(diff) * 4
   draggableDiv.style.transform = `translate3d(${current}%,0,0)`
   animationFrame = requestAnimationFrame(() => {animTill(current, limit)})
 
