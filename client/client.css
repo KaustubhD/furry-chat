@@ -21,6 +21,11 @@
   --base-blue: #0059D1;
   --base-light: #4888DE;
   --base-dark: #303F9F;
+  --current-yellow: #f7c037;
+  /* --current-yellow: #FFA000; */
+  /* --current-yellow-dark: #cc8000; */
+  --current-yellow-dark: #fda600;
+  --yellow-grad: linear-gradient(-45deg, var(--current-yellow-dark), var(--current-yellow), var(--current-yellow-dark));
 
   --font-big-h1: 4rem;
   --font-mid-h1: 3em;
@@ -102,7 +107,7 @@ button:hover:enabled{
 }
 #overlay h1{
   display: inline-block;
-  color: #FFA000;
+  color: var(--current-yellow);
   font-weight: 200;
   letter-spacing: 3px;
   margin-bottom: 0.1em;
@@ -112,7 +117,7 @@ button:hover:enabled{
   background: #111;
   border: 0;
   border-radius: 4px;
-  color: #FFA000;
+  color: var(--current-yellow);
   font-size: 2rem;
   padding: 10px;
   cursor: pointer;
@@ -121,7 +126,7 @@ button:hover:enabled{
 .overlay-inp{
   font-size: 2rem;
   padding: 5px 10px;
-  background: linear-gradient(to right, #cc8000, #FFA000, #cc8000);
+  background: var(--yellow-grad);
   color: #000;
   text-align: center;
   border: 0;
@@ -154,30 +159,33 @@ button:hover:enabled{
   overflow: hidden;
 }
 .left-div{
-  background: #fff;
+  background: var(--yellow-grad);
   box-shadow: 1px 0 10px 3px rgba(0,0,0,0.2);
   z-index: 2;
   padding: 0px 15px;
   height: 100%;
 }
-.left-div h1{
+.left-div h2{
   position: relative;
   font-size: 2em;
+  color: var(--base-blue);
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 .left-div > ul{
   height: 100%;
-  width: 100%;
-  margin-top: 1em;
+  width: 80%;
+  margin: 1em auto 0 auto;
 }
 .left-div ul li{
-  margin: 5px 0px;
+  margin: 20px 0px;
   border-radius: 4px;
-  background: #D4D1C8;
+  background: #fff;
   font-size: 1.3em;
   line-height: 1;
   text-align: center;
   padding: 20px 0;
   list-style: none;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.1), 0 2px 2px 0 rgba(0,0,0,0.3);
 }
 .right-div{
   display: flex;
