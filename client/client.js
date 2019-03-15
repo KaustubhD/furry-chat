@@ -4,7 +4,8 @@ window.WebSocket = window.WebSocket || window.MozWebSocket
 let conn = new WebSocket('ws://127.0.0.1:6900')
 // let conn = new WebSocket('wss://young-lowlands-88811.herokuapp.com/')
 // lett conn = new WebSocket('')
-
+let leftDiv = document.querySelector('.left-div')
+let rightDiv = document.querySelector('.right-div')
 let contentDiv = document.getElementById('content')
 let statusButton = document.getElementById('sub-name')
 // let statusSpan = document.getElementById('status')
@@ -15,6 +16,8 @@ let userName = false
 let userColor = false
 
 let allPeers = []
+
+let DEVICE_WIDTH = document.documentElement.clientWidth
 
 setup()
 
@@ -206,5 +209,64 @@ function setStatus(isActive, msg){
 
 function calcVh(){
   let maxHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+  DEVICE_WIDTH = document.documentElement.clientWidth
   document.documentElement.style.height = `${maxHeight}px`
+}
+
+
+// Touch events
+
+// Globals
+let T_start = 0
+let T_end = 0
+let isValidSwipe = false
+let swipeDir
+let acceptablePercent = -75
+let draggableDiv = leftDiv
+let animationFrame
+
+rightDiv.addEventListener('touchstart', startTouch, {passive: true})
+rightDiv.addEventListener('touchmove', moveTouch)
+rightDiv.addEventListener('touchend', endTouch, {passive: true})
+
+function startTouch(ev){
+  console.log(`%cStarting touch`, 'background-color: #004800; color: #fff;')
+  console.log(ev)
+  T_start = ev.changedTouches[0].clientX
+  isValidSwipe = true ? T_start < 20 : false
+}
+function moveTouch(ev){
+  ev.preventDefault()
+  // console.log(`%cMoving touch`, 'background-color: #A73838; color: #fff;')
+  // console.log(ev)
+  if(isValidSwipe || draggableDiv.className.split(' ').indexOf('visible') >= 0){
+    swipeDir = ev.changedTouches[0].clientX - T_start
+    T_end = -100 + (swipeDir * 100 / DEVICE_WIDTH)
+    requestAnimationFrame(function(){
+      draggableDiv.style.transform = `translate3d(${-100 + T_end}%,0,0)`
+    })
+  }
+}
+function endTouch(ev){
+  console.log(`%cEnding touch`, 'background-color: #0E2F44; color: #fff;')
+  console.log(ev)
+  if(T_end >=acceptablePercent){
+    animationFrame = requestAnimationFrame(animTill(T_end, 0 ? swipeDir > 0 ? -100))
+  }
+}
+
+function animTill(current, limit){
+  if(current > limit){
+    while(current > limit){
+      requestAnimationFrame()
+      current -= 4
+    }
+    cancelAnimationFrame(animationFrame)
+  }
+  else{
+    while(current < limit){
+      requestAnimationFrame()
+      current += 4
+    }
+  }
 }
