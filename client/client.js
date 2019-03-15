@@ -1,8 +1,8 @@
 // import "./client.css"
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
-let conn = new WebSocket('ws://127.0.0.1:6900')
-// let conn = new WebSocket('wss://young-lowlands-88811.herokuapp.com/')
+// let conn = new WebSocket('ws://127.0.0.1:6900')
+let conn = new WebSocket('wss://young-lowlands-88811.herokuapp.com/')
 // lett conn = new WebSocket('')
 let leftDiv = document.querySelector('.left-div')
 let rightDiv = document.querySelector('.right-div')
@@ -231,7 +231,7 @@ rightDiv.addEventListener('touchend', endTouch, {passive: true})
 
 function startTouch(ev){
   console.log(`%cStarting touch`, 'background-color: #004800; color: #fff;')
-  console.log(ev)
+  console.log(ev.changedTouches[0].clientX)
   T_start = ev.changedTouches[0].clientX
   isValidSwipe = true ? T_start < 20 : false
 }
@@ -239,10 +239,12 @@ function moveTouch(ev){
   ev.preventDefault()
   // console.log(`%cMoving touch`, 'background-color: #A73838; color: #fff;')
   // console.log(ev)
-  console.log('SwipeDir ---' + swipeDir)
+  console.log('SwipeDir --- ' + swipeDir)
   if(isValidSwipe || draggableDiv.className.split(' ').indexOf('visible') >= 0){
     swipeDir = ev.changedTouches[0].clientX - T_start
-    T_end = -100 + (swipeDir * 100 / draggableDiv.clientWidth)
+    T_end = (swipeDir * 100 / draggableDiv.clientWidth)
+    if(swipeDir > 0)
+      T_end -= 100
     requestAnimationFrame(function(){
       draggableDiv.style.transform = `translate3d(${T_end}%,0,0)`
     })
@@ -277,6 +279,7 @@ function animTill(current, limit){
     T_end = 0
     isValidSwipe = false
     swipeDir = 0
+    draggableDiv.style.transform = `translate3d(${limit}%,0,0)`
     return
   }
   current += Math.sign(diff) * 2
