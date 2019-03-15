@@ -1,4 +1,4 @@
-// import "./client.css"
+import "./client.css"
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
 // let conn = new WebSocket('ws://127.0.0.1:6900')
@@ -17,7 +17,7 @@ let userColor = false
 
 let allPeers = []
 
-let DEVICE_WIDTH = document.documentElement.clientWidth
+// let DEVICE_WIDTH = document.documentElement.clientWidth
 
 setup()
 
