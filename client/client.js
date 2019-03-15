@@ -1,4 +1,4 @@
-import "./client.css"
+// import "./client.css"
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
 let conn = new WebSocket('ws://127.0.0.1:6900')
@@ -220,8 +220,8 @@ function calcVh(){
 let T_start = 0
 let T_end = 0
 let isValidSwipe = false
-let swipeDir
-let acceptablePercent = -75
+let swipeDir = 0
+let acceptablePercent = 75
 let draggableDiv = leftDiv
 let animationFrame
 
@@ -239,34 +239,63 @@ function moveTouch(ev){
   ev.preventDefault()
   // console.log(`%cMoving touch`, 'background-color: #A73838; color: #fff;')
   // console.log(ev)
+  console.log('SwipeDir ---' + swipeDir)
   if(isValidSwipe || draggableDiv.className.split(' ').indexOf('visible') >= 0){
     swipeDir = ev.changedTouches[0].clientX - T_start
-    T_end = -100 + (swipeDir * 100 / DEVICE_WIDTH)
+    T_end = -100 + (swipeDir * 100 / draggableDiv.clientWidth)
     requestAnimationFrame(function(){
-      draggableDiv.style.transform = `translate3d(${-100 + T_end}%,0,0)`
+      draggableDiv.style.transform = `translate3d(${T_end}%,0,0)`
     })
   }
+  console.log(100 + T_end)
 }
 function endTouch(ev){
   console.log(`%cEnding touch`, 'background-color: #0E2F44; color: #fff;')
   console.log(ev)
-  if(T_end >=acceptablePercent){
-    animationFrame = requestAnimationFrame(animTill(T_end, 0 ? swipeDir > 0 ? -100))
+  console.log(100 + T_end)
+  if(100 + T_end >= acceptablePercent){
+    console.log(swipeDir)
+    // debugger
+    animationFrame = requestAnimationFrame(() => {animTill(T_end, 0)})
+    draggableDiv.classList.add('visible')
+  }
+  else{
+    animationFrame = requestAnimationFrame(() => {animTill(T_end, -100)})
+    draggableDiv.classList.remove('visible')
   }
 }
 
+let diff
 function animTill(current, limit){
-  if(current > limit){
-    while(current > limit){
-      requestAnimationFrame()
-      current -= 4
-    }
+  console.log(current + " ---- " + limit)
+  // debugger
+  diff = limit - current
+  if(Math.abs(diff) <= 1 || Math.abs(diff) >= 99){
     cancelAnimationFrame(animationFrame)
+    diff = 0
+    T_start = 0
+    T_end = 0
+    isValidSwipe = false
+    swipeDir = 0
+    return
   }
-  else{
-    while(current < limit){
-      requestAnimationFrame()
-      current += 4
-    }
-  }
+  current += Math.sign(diff) * 2
+  draggableDiv.style.transform = `translate3d(${current}%,0,0)`
+  animationFrame = requestAnimationFrame(() => {animTill(current, limit)})
+
+  // if(current > limit){
+
+  // }
+  //   while(current > limit){
+  //     current -= 4
+  //     requestAnimationFrame()
+  //   }
+  // // }
+  // else{
+  //   while(current < limit){
+  //     current += 4
+  //     requestAnimationFrame()
+  //   }
+  // }
+  // cancelAnimationFrame(animationFrame)
 }
