@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/KayDee/WStry.git"
+    "url": "git+ssh://git@github.com/KayDee/furry-chat.git"
   },
   "author": "Kaydee",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KayDee/WStry/issues"
+    "url": "https://github.com/KayDee/furry-chat/issues"
   },
-  "homepage": "https://github.com/KayDee/WStry#readme",
+  "homepage": "https://github.com/KayDee/furry-chat#readme",
   "dependencies": {
     "random-material-color": "^1.0.3",
     "websocket": "^1.0.28"

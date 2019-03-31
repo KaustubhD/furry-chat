@@ -1,5 +1,7 @@
-# WStry
+# Furry Chat
 
-Well, the text here is hidden beneath my keyboard.
+~Well, the text here is hidden beneath my keyboard.~
 
-Try it [here](https://kaydee.github.io/WStry)
+A simple chatroom app with node and sockets.
+
+Try it [here](https://kaustubhd.github.io/furry-chat)
