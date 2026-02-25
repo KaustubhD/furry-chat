@@ -1,50 +1,45 @@
 const path = require('path')
-const nodeExternals = require('webpack-node-externals')
+// const nodeExternals = require('webpack-node-externals')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: { main: './client/client.js' },
+  entry: './client/client.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[contenthash].js',
+    clean: true
   },
-  target: 'node',
-  externals: [nodeExternals()],
+  // target: 'node',
+  // externals: [nodeExternals()],
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: "babel-loader"
       },
       {
         test: /\.css$/,
-        use:  [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
-        test: /\.(svg|gif|jpg|png|eot|woff|ttf|woff2)$/,
-        loaders: [
-          'url-loader'
-        ]
+        test: /\.(svg|gif|jpg|png|eot|woff|ttf|woff2)$/i,
+        type: 'asset'
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin('dist', {}),
     new MiniCssExtractPlugin({
-      filename: 'client.[chunkhash].css',
+      filename: 'client.[contenthash].css',
     }),
-    new CopyWebpackPlugin([
-      { from: 'client/assets', to: 'assets' }
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'client/assets', to: 'assets' }
+      ]
+    }),
     new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
       template: 'client/index.html',
       filename: 'index.html'
     })

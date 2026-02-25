@@ -2,7 +2,7 @@ import "./client.css"
 window.WebSocket = window.WebSocket || window.MozWebSocket
 
 // let conn = new WebSocket('ws://127.0.0.1:6900')
-let conn = new WebSocket('wss://young-lowlands-88811.herokuapp.com/')
+let conn = new WebSocket('wss://furry-chat.onrender.com/')
 // lett conn = new WebSocket('')
 let leftDiv = document.querySelector('.left-div')
 let rightDiv = document.querySelector('.right-div')
